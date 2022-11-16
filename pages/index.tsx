@@ -40,31 +40,15 @@ const Home: NextPage = () => {
   const handleSubmit = async () => {
     try {
       if (isRegister) {
-        await axios.post(
-          `${process.env.NEXT_PUBLIC_API_URL}/auth/signup`,
-          {
-            email: form.values.email,
-            password: form.values.password,
-          },
-          {
-            headers: {
-              'Content-Type': 'application/x-www-form-urlencoded',
-            },
-          }
-        )
-      }
-      await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/auth/login`,
-        {
+        await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/signup`, {
           email: form.values.email,
           password: form.values.password,
-        },
-        {
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-        }
-      )
+        })
+      }
+      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, {
+        email: form.values.email,
+        password: form.values.password,
+      })
       form.reset()
       router.push('/dashboard')
     } catch (error: any) {
